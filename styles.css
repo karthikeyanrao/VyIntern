@@ -1,0 +1,27 @@
+
+#ti {
+    min-width: 400px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+h3 {
+    max-width: 400px;
+    background-color: white;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+div {
+    margin-top: 1rem;
+}
