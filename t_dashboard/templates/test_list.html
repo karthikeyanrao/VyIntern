@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Tests Created</h2>
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Test ID</th>
+                    <th>Subject</th>
+                    <th>Subject Code</th>
+                    <th>Date of Test</th>
+                    <th>Start Time</th>
+                    <th>Duration</th>
+                    <th>Department</th>
+                    <th>Year of Study</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                <tr>
+                    <td>{{ test.test_id }}</td>
+                    <td>{{ test.subject }}</td>
+                    <td>{{ test.subject_code }}</td>
+                    <td>{{ test.date_of_test }}</td>
+                    <td>{{ test.start_time }}</td>
+                    <td>{{ test.duration }}</td>
+                    <td>{{ test.department }}</td>
+                    <td>{{ test.year_of_study }}</td>
+                    <td>
+                        <a href="{% url 'test_questions_list' %}?test_id={{ test.test_id }}" class="btn btn-primary btn-sm">View Questions</a>
+
+                        <a href="{% url 'add_question' %}?test_id={{test.test_id}}"class="btn btn-success btn-sm">Add Questions<input type="hidden" name="test_id" value="{{ test.test_id }}"></a>
+                    </td>
+                    
+                </tr>
+                
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="text-center">No tests created yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

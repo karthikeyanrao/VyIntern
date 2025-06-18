@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Test Details - Online Exam Portal{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Test Details</h2>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Test ID</th>
+                    <th>Subject</th>
+                    <th>Subject Code</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>Duration</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Enrolled Students</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                <tr>
+                    <td>{{ test.test_id }}</td>
+                    <td>{{ test.subject }}</td>
+                    <td>{{ test.subject_code }}</td>
+                    <td>{{ test.date_of_test }}</td>
+                    <td>{{ test.start_time }}</td>
+                    <td>{{ test.duration }}</td>
+                    <td>{{ test.department }}</td>
+                    <td>{{ test.year_of_study }}</td>
+                    <td>{{ test.enrollment_count }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'manage_enrollments' test.test_id %}" class="btn btn-primary btn-sm">Manage Enrollments</a>
+                            <a href="{% url 'test_questions_list' %}?test_id={{ test.test_id }}" class="btn btn-info btn-sm">View Questions</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">No tests found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <a href="{% url 't_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %} 

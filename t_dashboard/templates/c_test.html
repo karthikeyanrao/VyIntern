@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #a3c5e3, #5f88b5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            background-color: #f4c542;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form method="POST" action="{% url 'create_test' %}">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Subject name:</label>
+                    <input type="text" name="subject_name" required>
+                </div>
+                <div class="col-md-6">
+                    <label>Subject code:</label>
+                    <input type="text" name="subject_code" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Date of test: <small>(dd/mm/yyyy)</small></label>
+                    <input type="date" name="date_of_test" required>
+                </div>
+                <div class="col-md-6">
+                    <label>Start time: <small>(hr:min:sec)</small></label>
+                    <input type="time" name="start_time" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Duration:</label>
+                    <input type="text" name="duration" placeholder="HH:MM:SS" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Department:</label>
+                    <select name="department" required>
+                        <option value="">Select Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="CCE">CCE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="MECH">MECH</option>
+                        <option value="ARE">ARE</option>
+                        <option value="CYS">CYS</option>
+                        <option value="AIE">AIE</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label>Year:</label>
+                    <select name="year" required>
+                        <option value="">Select year</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">CREATE TEST</button>
+        </form>
+    </div>
+
+</body>
+</html>
